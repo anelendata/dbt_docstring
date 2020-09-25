@@ -1,0 +1,2 @@
+# Add additional files to be included in the package
+# recursive-include dbt_docstring/data *
