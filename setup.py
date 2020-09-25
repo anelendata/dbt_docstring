@@ -29,10 +29,11 @@ setup(
 
     install_requires=[
         "setuptools>=40.3.0",
+        "pyyaml>=5.1",
     ],
     entry_points="""
     [console_scripts]
-    dbt_docstring=dbt_docstring:main
+    dbtdocstr=dbt_docstring:main
     """,
     packages=["dbt_docstring"],
     package_data={
