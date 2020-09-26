@@ -1,7 +1,7 @@
 #!/bin/bash
 
 PACKAGE=dbt_docstring
-COMMAND=dbt_docstring
+COMMAND=dbtdocstr
 
 PYTHON=/opt/python/3.6/bin/python
 if [ ! -e $PYTHON ]; then
