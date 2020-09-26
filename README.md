@@ -16,7 +16,7 @@ dbtdocstr lets you write docment in a docstring style directly in .sql files.
 ## How does it work?
 
 dbtdocstr command scans .sql files under dbt's models directories and look for
-a block that begins with `\`\`\`dbt` and end with `\`\`\``.
+a block that begins with ```` ```dbt```` and end with ```` ``` ````.
 Inside the block you can write the content of the models section of schema.yml
 corresponding to the current table as specified in
 [dbt document](https://docs.getdbt.com/docs/building-a-dbt-project/documentation/):
