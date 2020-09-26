@@ -13,6 +13,12 @@ may cause more documentats out of sync with the source.
 
 dbtdocstr lets you write docment in a docstring style directly in .sql files.
 
+## Install
+
+```
+pip install dbt_docstring
+```
+
 ## How does it work?
 
 dbtdocstr command scans .sql files under dbt's models directories and look for
