@@ -13,7 +13,7 @@ setup(
     long_description=long_description,
     long_description_content_type="text/markdown",
     author="Daigo Tanaka, Anelen Co., LLC",
-    url="https://github.com/daigotanaka/dbt_docstring",
+    url="https://github.com/anelendata/dbt_docstring",
 
     classifiers=[
         "Development Status :: 4 - Beta",
