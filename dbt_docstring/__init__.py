@@ -94,15 +94,15 @@ def _run(dbt_dir, backup=False):
     models_dirs = _get_models_dirs(dbt_dir)
     for models_dir in models_dirs:
         schema_file = os.path.join(dbt_dir, models_dir, "schema.yml")
-        doc_file = os.path.join(dbt_dir, models_dir, "doc.md")
+        doc_file = os.path.join(dbt_dir, models_dir, "docs.md")
 
         if backup and os.path.isfile(schema_file):
             os.rename(schema_file, schema_file[:len(schema_file) - 4] + "_" +
                       datetime.datetime.now().isoformat().replace(":", "-") +
-                      ".yml")
+                      ".yml_")
             os.rename(doc_file, doc_file[:len(doc_file) - 3] + "_" +
                       datetime.datetime.now().isoformat().replace(":", "-") +
-                      ".md")
+                      ".md_")
 
         doc_blocks, dbt_blocks = _scan_models(os.path.join(dbt_dir, models_dir))
         _write_schema_yml(schema_file, dbt_blocks)
@@ -119,10 +119,15 @@ def main():
         "dbt_dir",
         type=str,
         help="dbt root directory")
+    parser.add_argument(
+        "-b",
+        "--backup",
+        action="store_true",
+        help="When set, take a back up of existing schema.yml and docs.md")
 
     args = parser.parse_args()
 
-    _run(args.dbt_dir)
+    _run(args.dbt_dir, args.backup)
 
 
 if __name__ == "__main__":
