@@ -110,7 +110,7 @@ dbt docs serve
 
 ## Original repository
 
-- https://github.com/daigotanaka/dbt_docstring
+- https://github.com/anelendata/dbt_docstring
 
 ---
 
