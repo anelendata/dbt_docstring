@@ -38,6 +38,8 @@ This table lists the API keys with the status.
 columns:
   - name: api_key
     description: API key
+    tests:
+      - unique
   - name: enabled
     description: True if API key is enabled status
   - name: update_datetime
@@ -85,6 +87,8 @@ models:
     columns:
       - name: api_key
         description: API key
+        tests:
+          - unique
       - name: enabled
         description: True if API key is enabled status
       - name: update_datetime
