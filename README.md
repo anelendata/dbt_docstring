@@ -116,6 +116,13 @@ dbt docs serve
 
 - https://github.com/anelendata/dbt_docstring
 
+# About this project
+
+This project is developed by
+ANELEN and friends. Please check out the ANELEN's
+[open innovation philosophy and other projects](https://anelen.co/open-source.html)
+
+![ANELEN](https://avatars.githubusercontent.com/u/13533307?s=400&u=a0d24a7330d55ce6db695c5572faf8f490c63898&v=4)
 ---
 
-Copyright &copy; 2020 Anelen Co., LLC
+Copyright &copy; 2020~ Anelen Co., LLC
