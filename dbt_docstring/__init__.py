@@ -91,9 +91,9 @@ def _scan_models(models_dir):
                 dbt_blocks[tname].move_to_end("description", False)
                 dbt_blocks[tname].move_to_end("name", False)
 
-    # write to file
-    _write_property_yml(models_dir, dbt_blocks, "models")
-    _write_doc_md(models_dir, doc_blocks)
+        # write to file
+        _write_property_yml(cdir, dbt_blocks, "models")
+        _write_doc_md(cdir, doc_blocks)
 
 
 def _scan_macros(macros_dir):
@@ -151,9 +151,9 @@ def _scan_macros(macros_dir):
                     dbt_blocks[tname].move_to_end("description", False)
                     dbt_blocks[tname].move_to_end("name", False)
 
-    # write to file
-    _write_property_yml(macros_dir, dbt_blocks, "macros")
-    _write_doc_md(macros_dir, doc_blocks)
+        # write to file
+        _write_property_yml(cdir, dbt_blocks, "macros")
+        _write_doc_md(cdir, doc_blocks)
 
 
 
