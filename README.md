@@ -21,7 +21,7 @@ pip install dbt_docstring
 
 ## How does it work?
 
-dbtdocstr command scans .sql files under dbt's models directories and look for
+dbtdocstr command scans .sql files under dbt's models directories, folder directories and look for
 a block that begins with ```` ```dbt```` and end with ```` ``` ````.
 Inside the block you can write the content of the models section of schema.yml
 corresponding to the current table as specified in
