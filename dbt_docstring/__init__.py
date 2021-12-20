@@ -64,11 +64,10 @@ def _scan_models(models_dir):
         logger.warning("%s directory not found" % models_dir)
         return
 
-    doc_blocks = OrderedDict()
-    dbt_blocks = OrderedDict()
-
     models_dirs = os.walk(models_dir)
     for cdir, dirs, files in models_dirs:
+        doc_blocks = OrderedDict()
+        dbt_blocks = OrderedDict()
         for fname in files:
             # Parse the table name from the SQL file name
             if fname[-3:] != "sql":
@@ -102,11 +101,11 @@ def _scan_macros(macros_dir):
     if not os.path.isdir(macros_dir):
         logger.warning("%s directory not found" % macros_dir)
         return
-    doc_blocks = OrderedDict()
-    dbt_blocks = OrderedDict()
 
     macro_dirs = os.walk(macros_dir)
     for cdir, dirs, files in macro_dirs:
+        doc_blocks = OrderedDict()
+        dbt_blocks = OrderedDict()
         for fname in files:
             # Parse the table name from the SQL file name
             if fname[-3:] != "sql":
