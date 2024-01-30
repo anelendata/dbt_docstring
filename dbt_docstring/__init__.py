@@ -17,7 +17,8 @@ def _get_models_dirs(dbt_dir):
         exit(1)
     with open(dbt_project_file, "r") as f:
         config = yaml.load(f, Loader=yaml.FullLoader)
-    return config["model-paths"]
+    model_dirs = config.get("model-paths", config.get("source-paths"))
+    return model_dirs
 
 
 def _read_dbt_block(sql_file):
