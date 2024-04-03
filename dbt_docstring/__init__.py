@@ -8,7 +8,24 @@ logger = logging.getLogger(__name__)
 
 COMMAND = "dbt_docstring"
 DBT_BLOCK_START_KEY = "```dbt"
+KEY_ORDER = ['name', 'description', 'docs', 'latest_version', 'deprecation_date', 'access', 'config', 'constraints', 'tests', 'columns']
 
+def sort_dict(d, keys=KEY_ORDER):
+    """
+    Sorts dictionary according to the specified key order. Extra keys are appended at the end.
+    
+    Parameters: 
+    d (dict): Dictionary to be sorted.
+    keys (list): Sequence of keys for sorting
+
+    Returns: 
+    dict: Sorted dictionary.
+    """
+    sorted_dict = {k: sort_dict(d[k], keys) if isinstance(d[k], dict) else d[k] for k in keys if k in d}
+    extra_keys = set(d.keys()) - set(keys)
+    sorted_dict.update({k: d[k] for k in extra_keys})
+    
+    return sorted_dict
 
 def _get_models_dirs(dbt_dir):
     dbt_project_file = os.path.join(dbt_dir, "dbt_project.yml")
@@ -77,7 +94,8 @@ def _write_schema_yml(schema_file, dbt_blocks):
 """)
 
         f.write("version: 2\nmodels:\n")
-        f.write(indent(yaml.dump(list(dbt_blocks.values())), " " * 2) + "\n")
+        dbt_blocks = {k: sort_dict(dbt_blocks[k]) for k in dbt_blocks}
+        f.write(indent(yaml.dump(list(dbt_blocks.values()), sort_keys=False), " " * 2) + "\n")
 
 
 def _write_doc_md(md_file, doc_blocks):
