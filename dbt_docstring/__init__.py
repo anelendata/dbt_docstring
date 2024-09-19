@@ -8,7 +8,7 @@ logger = logging.getLogger(__name__)
 
 COMMAND = "dbt_docstring"
 DBT_BLOCK_START_KEY = "```dbt"
-KEY_ORDER = ['name', 'description', 'docs', 'latest_version', 'deprecation_date', 'access', 'config', 'constraints', 'tests', 'columns']
+KEY_ORDER = ['name', 'description', 'meta', 'docs', 'latest_version', 'deprecation_date', 'access', 'config', 'constraints', 'tests', 'data_test', 'unit_tests', 'columns']
 
 def sort_dict(d, keys=KEY_ORDER):
     """
