@@ -1,8 +1,14 @@
 ## History
 
+### 0.1.4 (2024-10-03)
+
+Add support for custom sorted order of keys in the yml dump
+(Thx @michrzan)
+
 ### 0.1.3 (2024-01-30)
 
 Support dbt 1.x model-paths format
+(Thx @jbogaardt)
 
 ### 0.1.2 (2020-09-25)
 

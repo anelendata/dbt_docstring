@@ -11,3 +11,5 @@ Contributors
 ------------
 
 * John S Bogaardt (@jbogaardt)
+* Mike Chrzanowski (@michrzan)
+
