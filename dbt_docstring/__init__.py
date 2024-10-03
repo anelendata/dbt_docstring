@@ -8,7 +8,7 @@ logger = logging.getLogger(__name__)
 
 COMMAND = "dbt_docstring"
 DBT_BLOCK_START_KEY = "```dbt"
-KEY_ORDER = ['name', 'description', 'meta', 'docs', 'latest_version', 'deprecation_date', 'access', 'config', 'constraints', 'tests', 'data_test', 'unit_tests', 'columns']
+KEY_ORDER = ['name', 'label', 'enabled', 'description', 'meta', 'docs', 'latest_version', 'deprecation_date', 'access', 'config', 'constraints', 'tests', 'data_test', 'unit_tests', 'columns']
 
 def sort_dict(d, keys=KEY_ORDER):
     """
@@ -49,10 +49,13 @@ def _read_dbt_block(sql_file):
     if doc:
         dbt_start = doc.find(DBT_BLOCK_START_KEY)
         dbt_end = doc.find("```", dbt_start + len(DBT_BLOCK_START_KEY))
-
+        line_dbt_start = doc[0:dbt_start].count("\n") + 1
         if dbt_start > -1:
             dbt_block = doc[dbt_start + len(DBT_BLOCK_START_KEY):dbt_end]
-            dbt = yaml.load(dbt_block, Loader=yaml.FullLoader)
+            try:
+                dbt = yaml.load(dbt_block, Loader=yaml.FullLoader)
+            except yaml.scanner.ScannerError as e:
+                print(f"ScannerError in file {sql_file} at file line {e.problem_mark.line + line_dbt_start}, column {e.problem_mark.column + 1}: {e.problem}")
         doc = doc[0:dbt_start].strip()
 
     return doc, dbt
