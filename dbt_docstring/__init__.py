@@ -22,7 +22,7 @@ def sort_dict(d, keys=KEY_ORDER):
     dict: Sorted dictionary.
     """
     sorted_dict = {k: sort_dict(d[k], keys) if isinstance(d[k], dict) else d[k] for k in keys if k in d}
-    extra_keys = set(d.keys()) - set(keys)
+    extra_keys = [k for k in d if k not in keys]
     sorted_dict.update({k: d[k] for k in extra_keys})
     
     return sorted_dict
