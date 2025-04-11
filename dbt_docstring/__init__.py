@@ -40,7 +40,11 @@ def _get_models_dirs(dbt_dir):
 
 def _read_dbt_block(sql_file):
     with open(sql_file, "r") as f:
-        sql = f.read()
+        try:
+            sql = f.read()
+        except UnicodeDecodeError as e:
+            print(f"Error reading file {sql_file}: {e}")
+            return None, None   
     doc_start = sql.find("/*")
     doc_end = sql.find("*/")
     doc = sql[doc_start + 2:doc_end] if doc_start > -1 else ""
