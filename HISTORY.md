@@ -1,5 +1,10 @@
 ## History
 
+### 0.1.5 (2025-04-17)
+
+Catch unicode decoding errors
+(Thx @michrzan)
+
 ### 0.1.4 (2024-10-03)
 
 Add support for custom sorted order of keys in the yml dump
