@@ -40,7 +40,11 @@ def _get_models_dirs(dbt_dir):
 
 def _read_dbt_block(sql_file):
     with open(sql_file, "r") as f:
-        sql = f.read()
+        try:
+            sql = f.read()
+        except UnicodeDecodeError as e:
+            print(f"Error reading file {sql_file}: {e}")
+            return None, None   
     doc_start = sql.find("/*")
     doc_end = sql.find("*/")
     doc = sql[doc_start + 2:doc_end] if doc_start > -1 else ""
@@ -55,7 +59,7 @@ def _read_dbt_block(sql_file):
             try:
                 dbt = yaml.load(dbt_block, Loader=yaml.FullLoader)
             except yaml.scanner.ScannerError as e:
-                print(f"ScannerError in file {sql_file} at file line {e.problem_mark.line + line_dbt_start}, column {e.problem_mark.column + 1}: {e.problem}")
+                print(f"ScannerError in {sql_file} at line {e.problem_mark.line + line_dbt_start}, column {e.problem_mark.column + 1}: {e.problem}")
         doc = doc[0:dbt_start].strip()
 
     return doc, dbt
